@@ -1,1 +1,33 @@
-<h1>Olá mundo</h1>
+<form action="">
+    <img src="../../assets/images/clients/default.png" alt="">
+
+    <input type="text"      placeholder="Nome"       class="form-control"   name="nome"     [(ngModel)]="cliente.nome">
+    <input type="number"    placeholder="Idade"      class="form-control"   name="idade"    [(ngModel)]="cliente.idade"> 
+    <input type="text"      placeholder="Cidade"     class="form-control"   name="cidade"   [(ngModel)]="cliente.cidade">
+
+    <input type="button" value="Cadastrar"  class="btn btn-primary"     *ngIf="visibilidadeBotoes"  (click)="cadastrar()">
+    <input type="button" value="Alterar"    class="btn btn-warning"     *ngIf="!visibilidadeBotoes" (click)="editar()">
+    <input type="button" value="Remover"    class="btn btn-danger"      *ngIf="!visibilidadeBotoes" (click)="remover()">
+    <input type="button" value="Cancelar"   class="btn btn-secondary"   *ngIf="!visibilidadeBotoes" (click)="cancelar()">
+</form>
+
+<table class="table" *ngIf="visibilidadeTabela">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Cidade</th>
+            <th>Selecionar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of clientes; index as i">
+            <td>{{c.codigo}}</td>
+            <td>{{c.nome}}</td>
+            <td>{{c.idade}}</td>
+            <td>{{c.cidade}}</td>
+            <td><button class="btn btn-success" (click)="selecionarClienteEspecifico(i)">Selecionar</button></td>
+        </tr>
+    </tbody>
+</table>
